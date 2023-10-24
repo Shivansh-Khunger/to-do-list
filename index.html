@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do-List</title>
+    <link rel="stylesheet" href="output.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body class="bg-white dark:bg-zinc-600">
+    <div  class="flex items-center justify-center text-5xl mt-2 md:text-7xl">
+      <span class="font-mono font-bold self-center">Today</span>
+      <span
+      id = "counter-span"
+        class="rounded-md dark:border-zinc-400 border-gray-300 border px-3 font-serif justify-center m-1 mx-2 pb-3 md:pb-4"
+        >0</span
+      >
+    </div>
+    <div class="flex flex-col justify-end md:flex-col-reverse min-h-[80vh]">
+      <div
+        class="flex items-center justify-center text-4xl order-1 md:text-5xl md:mt-3"
+      >
+        <div
+        id="add-task-button"
+          class="rounded-xl dark:border-zinc-400 border-gray-300 cursor-pointer border-2 p-1.5 m-2 font-mono"
+        >
+          Add a task
+        </div>
+      </div>
+      <div
+      id="task-list-container"
+        class="flex flex-col items-center justify-center text-3xl md:text-4xl overflow-y-auto max-h-[650px] md:mt-4 md:max-h-[525px]"
+      >
+        <!-- <div
+          class="flex justify-center font-normal items-center hover:bg-zinc-500 hover:transition duration-150 p-1 rounded-md hover:font-medium font-mono"
+        >
+          <span
+            class="material-symbols-outlined cursor-pointer align-middle mr-4 "
+            id="h"
+          >
+            radio_button_unchecked
+          </span>
+          <label for="h" class="flex w-[14ch]">Work</label>
+          <div class="flex justify-center items-center ml-4">
+            <label
+              for="h"
+              class="px-1 border-2 border-transparent transition-colors hover:border-zinc-400 hover:border-2 hover:rounded-xl hover:bg-zinc-800 hover:text-zinc-400 md:px-2 cursor-pointer"
+              ><span class="material-symbols-outlined">edit</span></label
+            >
+            <label
+              for="h"
+              class="px-1 border-2 border-transparent transition-colors hover:border-zinc-400 hover:border-2 hover:rounded-xl hover:bg-zinc-800 hover:text-zinc-400 md:px-2 cursor-pointer"
+              ><span class="material-symbols-outlined">tune</span></label
+            >
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div id = "add-task-pop-up-page" class="fixed inset-0 z-50 hidden animate-in slide-in-from-bottom-full duration-700">
+      <div
+        class="fixed bottom-0 left-0 w-full min-h-[58vh] bg-zinc-400 z-50 transform traslate-y-full transition-transform duration-300 ease-in-out rounded-t-2xl"
+      >
+        <div
+          class="flex justify-center items-center font-bold text-2xl mx-6 pb-1 mb-2 font-mono border-zinc-800 border-x-2 border-b-4 rounded-b-3xl"
+        >
+          <h1>add task details...</h1>
+        </div>
+        <div class="flex flex-col mt-4">
+          <input
+            type="text"
+            name=""
+            id="task-name"
+            placeholder="task name ..."
+            maxlength="14"
+            class="w-full bg-transparent font-mono text-lg placeholder:text-black border-black border-b mb-4 pb-0.5 pl-1 flex justify-start items-center focus:outline-none"
+          />
+          <textarea
+            name=""
+            id="task-detail"
+            cols="30"
+            rows="4"
+            placeholder="task details ..."
+            class="bg-transparent w-full font-mono text-lg border-black border-b placeholder:text-black pl-1 mb-4 pb-0.5 resize-none focus:outline-none"
+          ></textarea>
+          <div class="relative inline-block text-lg font-mono">
+            <div id ='priority-content-container' class="pl-1">
+              priority level ...
+              <span id = "priority-list-drop-down" class="material-symbols-outlined align-middle">
+                arrow_drop_down
+              </span>
+              <div id="priority-list-container" class="flex justify-center mt-1">
+                <ul id = "priority-list" class="absolute bg-transparent hidden">
+                  <li
+                    class="p-2 hover:bg-zinc-200 rounded-xl hover:opacity-80 hover:transition duration-150"
+                  >
+                    High
+                  </li>
+                  <li
+                    class="p-2 hover:bg-zinc-200 rounded-xl hover:opacity-80 hover:transition duration-150"
+                  >
+                    Medium
+                  </li>
+                  <li
+                    class="p-2 hover:bg-zinc-200 rounded-xl hover:opacity-80 hover:transition duration-150"
+                  >
+                    Low
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div
+          id="add-task-finalisation-button"
+            class="relative flex top-36 justify-center hover:opacity-80 hover:transition duration-150 hover:bg-zinc-900 hover:text-zinc-300 rounded-full mx-28 text-2xl font-mono tracking-tight"
+          >
+            add task .
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="logic.js"></script>
+  </body>
+</html>
