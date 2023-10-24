@@ -649,6 +649,18 @@ video {
   min-height: 80vh;
 }
 
+.min-h-\[8vh\] {
+  min-height: 8vh;
+}
+
+.min-h-\[vh\] {
+  min-height: vh;
+}
+
+.min-h-\[64vh\] {
+  min-height: 64vh;
+}
+
 .w-\[14ch\] {
   width: 14ch;
 }
@@ -783,6 +795,11 @@ video {
 .border-zinc-800 {
   --tw-border-opacity: 1;
   border-color: rgb(39 39 42 / var(--tw-border-opacity));
+}
+
+.border-zinc-900 {
+  --tw-border-opacity: 1;
+  border-color: rgb(24 24 27 / var(--tw-border-opacity));
 }
 
 .bg-transparent {
