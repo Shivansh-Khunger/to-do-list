@@ -669,6 +669,10 @@ video {
   min-height: 64vh;
 }
 
+.min-h-\[70vh\] {
+  min-height: 70vh;
+}
+
 .w-\[14ch\] {
   width: 14ch;
 }
