@@ -229,7 +229,7 @@ function addTask() {
   });
 
   addTaskFinalButton.addEventListener("click", function () {
-    if (newTask.taskName === "") {
+    if (newTask.taskName == "") {
       if (screen.width > 768) {
         addTaskFinalButton.title = "please enter name of the task ...";
         taskNameField.placeholder = "task name ...  (!)";
@@ -250,6 +250,42 @@ function addTask() {
           "animate-duration-[280ms]"
         );
       }, 281);
+    } else if (!newTask.isTaskAdded) {
+      for (child in priorityContentContainer.childNodes) {
+        if (priorityContentContainer.childNodes[child].nodeType === 3) {
+          priorityContentContainer.childNodes[
+            child
+          ].nodeValue = `priority level ...`;
+          break;
+        }
+      }
+      taskNameField.placeholder = "task name ...";
+      console.log("New-Task Site");
+      console.log(newTask);
+      newTask.isTaskAdded = true;
+      taskList.push(newTask);
+      addTaskOnScreen(newTask);
+      updateTaskCounter();
+      sortElementsOnScreen();
+      taskNameField.value = "";
+      taskDetailsField.value = "";
+      addTaskPopUpPage.classList.remove(
+        "animate-in",
+        "slide-in-from-bottom-full",
+        "block"
+      );
+      addTaskPopUpPage.classList.add("animate-out", "slide-out-to-bottom-full");
+      setTimeout(function () {
+        addTaskPopUpPage.classList.add(
+          "hidden",
+          "animate-in",
+          "slide-in-from-bottom-full"
+        );
+        addTaskPopUpPage.classList.remove(
+          "animate-out",
+          "slide-out-to-bottom-full"
+        );
+      }, 701);
     } else {
       for (child in priorityContentContainer.childNodes) {
         if (priorityContentContainer.childNodes[child].nodeType === 3) {
@@ -260,25 +296,14 @@ function addTask() {
         }
       }
       taskNameField.placeholder = "task name ...";
-      if (taskList.includes(newTask)) {
-        console.log("Old-Task Site");
-        console.log(newTask);
-        updateTaskOnScreen(newTask);
-        newTask.isTaskEditing = false;
-        addTaskFinalButton.innerHTML = "add task .";
-        sortElementsOnScreen();
-      } else {
-        console.log("New-Task Site");
-        console.log(newTask);
-        newTask.isTaskAdded = true;
-        taskList.push(newTask);
-        addTaskOnScreen(newTask);
-        updateTaskCounter();
-        sortElementsOnScreen();
-      }
+      console.log("Old-Task Site");
+      console.log(newTask);
+      updateTaskOnScreen(newTask);
+      newTask.isTaskEditing = false;
+      addTaskFinalButton.innerHTML = "add task .";
+      sortElementsOnScreen();
       taskNameField.value = "";
       taskDetailsField.value = "";
-      // console.log(taskList);
       addTaskPopUpPage.classList.remove(
         "animate-in",
         "slide-in-from-bottom-full",
@@ -640,4 +665,11 @@ function sortElementsOnScreen() {
     console.log("appending - ", divTaskContainerList[i]);
     taskListContainer.appendChild(divTaskContainerList[i]);
   }
+}
+
+function ifInputEmpty(newTask) {
+  if (newTask.taskName == "") {
+    return true;
+  }
+  return false;
 }
