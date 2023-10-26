@@ -367,6 +367,19 @@ function addTaskOnScreen(newTask) {
   titleNameLabel.innerHTML = newTask.taskName;
   taskContainer.appendChild(titleNameLabel);
 
+  const titleNameEditInput = document.createElement("input");
+  titleNameEditInput.classList.add(
+    "flex",
+    "w-[14ch]",
+    "bg-transparent",
+    "focus:outline-none",
+    "hidden"
+  );
+  titleNameEditInput.id = newTask.taskName + "-title-name-edit-input";
+  titleNameEditInput.type = "text";
+
+  taskContainer.appendChild(titleNameEditInput);
+
   const optionsContainer = document.createElement("div");
   optionsContainer.classList.add(
     "flex",
@@ -436,6 +449,53 @@ function addTaskOnScreen(newTask) {
 
   taskContainer.addEventListener("touchend", () => {
     taskContainer.classList.remove("bg-zinc-500");
+  });
+
+  editOptionLabel.addEventListener("click", () => {
+    const tickOptionLabel = document.createElement("label");
+    tickOptionLabel.classList.add(
+      "px-1",
+      "border-2",
+      "border-transparent",
+      "transition-colors",
+      "hover:border-zinc-400",
+      "hover:border-2",
+      "hover:rounded-xl",
+      "hover:bg-zinc-800",
+      "hover:text-zinc-400",
+      "md:px-2",
+      "cursor-pointer"
+    );
+    tickOptionLabel.id = newTask.taskName + "-tick-option";
+
+    const tickOptionSpan = document.createElement("span");
+    tickOptionSpan.classList.add("material-symbols-outlined");
+    tickOptionSpan.innerHTML = "done_all";
+    tickOptionSpan.id = newTask.taskName + "-tick-option-span";
+
+    tuneOptionLabel.classList.add("hidden");
+    editOptionLabel.classList.add("hidden");
+
+    titleNameLabel.classList.add("hidden");
+    titleNameEditInput.classList.remove("hidden");
+
+    titleNameEditInput.value = newTask.taskName;
+
+    tickOptionLabel.appendChild(tickOptionSpan);
+    optionsContainer.appendChild(tickOptionLabel);
+
+    tickOptionLabel.addEventListener("click", () => {
+      tuneOptionLabel.classList.remove("hidden");
+      editOptionLabel.classList.remove("hidden");
+
+      titleNameLabel.classList.remove("hidden");
+      titleNameEditInput.classList.add("hidden");
+
+      newTask.taskName = titleNameEditInput.value;
+      titleNameLabel.innerHTML = newTask.taskName;
+
+      tickOptionLabel.remove();
+    });
   });
 
   titleNameLabel.addEventListener("click", () => {
@@ -530,6 +590,11 @@ function updateTaskOnScreen(updatedTask) {
   );
   titleNameLabel.id = updatedTask.taskName + "-title-name-label";
   titleNameLabel.innerHTML = updatedTask.taskName;
+
+  const titleNameEditInput = document.getElementById(
+    updatedTask.prevTaskName + "-title-name-edit-input"
+  );
+  titleNameEditInput.id = updatedTask.taskName + "-title-name-edit-input";
 
   const optionsContainer = document.getElementById(
     updatedTask.prevTaskName + "-options-container"
